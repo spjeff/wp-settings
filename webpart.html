@@ -1,0 +1,23 @@
+<script src="/sites/test/SiteAssets/wp-settings.js"></script>
+<script>
+    // web part - initialze
+    function wpInit(setting) {
+        console.log(setting);
+        document.getElementById('helloText').value = JSON.stringify(setting);
+    }
+
+    // web part - saved setting
+    function wpSaved(id) {
+        console.log('Saved ' + id);
+    }
+
+    // read settings before initializing web part
+    wpsRead('input[type=button]', wpInit);
+</script>
+
+<div style="background-color:yellow; padding:5px">
+    <div>Hello World</div>
+    <hr/>
+    <input type="text" name="" id="helloText" size="50">
+    <input type="button" value="Save" onclick="wpsWrite('input[type=button]', JSON.parse(document.getElementById('helloText').value), wpSaved)">
+</div>
