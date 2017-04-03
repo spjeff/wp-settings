@@ -1,7 +1,7 @@
 <script src="/sites/test/SiteAssets/wp-settings.js"></script>
 <script>
     // web part - initialze
-    function wpInit(setting) {
+    function wpDraw(setting) {
         console.log(setting);
         document.getElementById('helloText').value = JSON.stringify(setting);
     }
@@ -12,7 +12,10 @@
     }
 
     // read settings before initializing web part
-    wpsRead('input[type=button]', wpInit);
+    function wpInit() {
+        wpsRead('input[type=button]', wpDraw);
+    }
+    _spBodyOnLoadFunctionNames.push("wpInit");
 </script>
 
 <div style="background-color:yellow; padding:5px">

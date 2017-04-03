@@ -106,7 +106,7 @@ function wpsWriteItem(css, setting, callback) {
     };
 
     // READ
-    wpsAjax('GET', '/_api/web/lists/getbytitle(\'wpSetting\')/items?$select=Id,Title&$filter=(wpPageURL+eq+\'' + url + '\')+and+(wpTitle+eq+\'' + title + '\')', data, function (resp) {
+    wpsAjax('GET', '/_api/web/lists/getbytitle(\'wpSetting\')/items?$select=Id,Title&$filter=(wpPageURL+eq+\'' + url + '\')+and+(wpTitle+eq+\'' + title + '\')', null, function (resp) {
         var obj = JSON.parse(resp.response);
         if (obj.d.results.length) {
             // parse ID for matching row
@@ -144,7 +144,7 @@ function wpsWrite(css, setting, save) {
 function wpsRead(css, callback) {
     var url = _spPageContextInfo.webServerRelativeUrl + _spPageContextInfo.serverRequestPath;
     var title = wpsGetTitle(css);
-    wpsAjax('GET', '/_api/web/lists/getbytitle(\'wpSetting\')/items?$select=Id,Title&$filter=(wpPageURL+eq+\'' + url + '\')+and+(wpTitle+eq+\'' + title + '\')', data, function (resp) {
+    wpsAjax('GET', '/_api/web/lists/getbytitle(\'wpSetting\')/items?$select=Id,Title&$filter=(wpPageURL+eq+\'' + url + '\')+and+(wpTitle+eq+\'' + title + '\')', null, function (resp) {
         var obj = JSON.parse(resp.response);
         if (callback) {
             var title = null;
