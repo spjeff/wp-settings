@@ -114,6 +114,8 @@ function wpsWriteItem(css, setting, callback) {
         }
         if (id) {
             // UPDATE
+            data.Id = id;
+            data.ID = id;
             wpsAjax('POST', '/_api/web/lists/getbytitle(\'wpSetting\')/items(' + id + ')', data, function (resp) {
                 if (callback) {
                     callback(id);
