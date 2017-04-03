@@ -95,7 +95,11 @@ function wpsGetTitle(css) {
 // execute REST write 
 function wpsWriteItem(css, setting, callback) {
     var url = _spPageContextInfo.webServerRelativeUrl + _spPageContextInfo.serverRequestPath;
-    var title = wpsGetTitle(css);
+    if (css) {
+        var title = wpsGetTitle(css);
+    } else {
+        var title = 'fullpage';
+    }
     var data = {
         '__metadata': {
             'type': 'SP.ListItem'
@@ -145,7 +149,11 @@ function wpsWrite(css, setting, save) {
 // button click - Read
 function wpsRead(css, callback) {
     var url = _spPageContextInfo.webServerRelativeUrl + _spPageContextInfo.serverRequestPath;
-    var title = wpsGetTitle(css);
+    if (css) {
+        var title = wpsGetTitle(css);
+    } else {
+        var title = 'fullpage';
+    }
     wpsAjax('GET', '/_api/web/lists/getbytitle(\'wpSetting\')/items?$select=Id,Title&$filter=(wpPageURL+eq+\'' + url + '\')+and+(wpTitle+eq+\'' + title + '\')', null, function (resp) {
         var obj = JSON.parse(resp.response);
         if (callback) {
